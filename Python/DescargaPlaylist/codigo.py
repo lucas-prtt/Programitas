@@ -13,7 +13,7 @@ for v in pl.videos:
     i=i+1
     descarga = v.streams.filter(only_audio=True).first()  
     print(str(i) + ". Descargando: " + v.title + "\n -Tamaño: " + str(descarga.filesize_mb) + "Mb\n")
-    descarga.download(output_path="Audios descargados")
+    descarga.download(filename_prefix=str(i) + ".",output_path="Audios descargados")
 
 path="./Audios descargados"
 for archivo in os.listdir(path):
