@@ -26,13 +26,16 @@ def parseJson(jsonString):
 def matchObjeto():
     atributos = []
     matchCaracter("{")
+    quitarEspacios()
 
     if proximoCaracter() != "}": 
         atributos.append(matchAtributo())
+        quitarEspacios()
         while (proximoCaracter() == ','):
             quitarPrimerCaracter()
+            quitarEspacios()
             atributos.append(matchAtributo())
-
+    quitarEspacios()
     matchCaracter("}")
     return nuevoObjeto(atributos)
 
@@ -60,7 +63,7 @@ def matchTexto():
 def matchValor():
     if proximoCaracter() == '"':
         return matchTexto()
-    elif proximoCaracter() in "0123456789.":
+    elif proximoCaracter() in "-0123456789.":
         return matchNumero()
     elif proximoCaracter() == "[":
         return matchArray()
@@ -79,12 +82,6 @@ def matchValor():
         raise Exception("Error en funcion matchValor: tipo de valor no identificado")
     
 
-
-
-#############################################################
-########### Funciones que editan globalJsonString ###########
-#############################################################
-
 def matchCaracter(caracter):
     global globalJsonString
     if (globalJsonString[0] != caracter) :
@@ -92,6 +89,27 @@ def matchCaracter(caracter):
     else :
         quitarPrimerCaracter()
         return
+
+def matchNumero():
+    global globalJsonString
+    isFloat = False
+    numberVal = 0
+    lastNumberIndex = 0
+    while globalJsonString[lastNumberIndex] in "0123456789.-":
+        if globalJsonString[lastNumberIndex] == '.':
+            isFloat = True
+        lastNumberIndex += 1 
+    if isFloat:
+        numberVal = float(globalJsonString[0:lastNumberIndex])
+    else:
+        numberVal = int(globalJsonString[0:lastNumberIndex])
+    quitarCaracteres(lastNumberIndex)
+    return numberVal
+    
+#############################################################
+########### Funciones que editan globalJsonString ###########
+#############################################################
+
 
 def proximoCaracter():
     global globalJsonString
