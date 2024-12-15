@@ -1,7 +1,7 @@
 from parser import *
 
 #fileName = input("File name: ")
-fileName = "test.py"
+fileName = "example.json"
 file = open(fileName, "r")
 fileContent = file.read()
 

@@ -1,3 +1,6 @@
+
+globalJsonString = ""
+
 class nuevoObjeto:
     def __init__(self, atributos):   # Atributos es uno o mas duplas (identificador, valor)
         for attr in atributos:
@@ -8,19 +11,31 @@ class nuevoObjeto:
 
 
 def parseJson(jsonString):
-    tempJsonString = jsonString
-    return matchObjeto(tempJsonString)
+    global globalJsonString 
+    globalJsonString = jsonString
+    return matchObjeto()
     # x = nuevoObjeto([("numeroDeLaSuerte", 7), ("edad", 60), ("nombre", "Manuel Belgrano")])
 
 
 
-def matchObjeto(string):
+def matchObjeto():
     atributos = []
-    # match abreCorchete
+    matchCaracter("{")
     # match atributos
-    # match cierraCorchete
+    matchCaracter("}")
     return nuevoObjeto(atributos)
 
+
+
+
+
+def matchCaracter(caracter):
+    global globalJsonString
+    if (globalJsonString[0] != caracter) :
+        raise Exception("Se esperaba " + caracter + " pero se recibio " + globalJsonString[0])
+    else :
+        globalJsonString = globalJsonString[1:]
+        return
 
 
 
