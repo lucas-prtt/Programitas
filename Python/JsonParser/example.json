@@ -1,1 +1,1 @@
-{"name" : "Manuel Belgrano", "age" : 60}
+{"Nombre" : "Manuel Belgrano", "Edad del tipo" : 60, "armas": ["fusil", "espada", ["canica verde", "canica azul", "canica amarilla"]], "Estatura" : 176.8}
