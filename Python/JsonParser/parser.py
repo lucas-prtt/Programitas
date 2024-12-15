@@ -49,8 +49,6 @@ def matchAtributo():
     valor = matchValor()
     return (id, valor)
 
-    
-
 def matchTexto():
     texto = ""
     matchCaracter('"')
@@ -106,6 +104,39 @@ def matchNumero():
     quitarCaracteres(lastNumberIndex)
     return numberVal
     
+def matchArray():
+    matchCaracter("[")
+    array = matchArrayAux()
+    matchCaracter("]")
+    return array
+
+def matchArrayAux():
+    quitarEspacios()
+    if proximoCaracter() == "{":
+        elemento = matchObjeto()
+        quitarEspacios()
+        if(matchCaracterOpcional(",")) :
+            return [elemento] + matchArrayAux()  # Usar append no funciona ya que devuelve None, no la lista con el elemento agregado
+        else:                                   # Se puede usar "," pero dicen en internet que no es recomendable porque es ambiguo o algo asi
+            return [elemento]
+    elif proximoCaracter() in '"1234567890-.':
+        elemento = matchValor()
+        quitarEspacios()
+        if(matchCaracterOpcional(",")) :
+            return [elemento] + matchArrayAux() 
+        else:
+            return [elemento]
+    elif proximoCaracter() == "[":
+        elemento = matchArray()
+        quitarEspacios()
+        if(matchCaracterOpcional(",")) :
+            return [elemento] + matchArrayAux()
+        else:
+            return [elemento]    
+    else:
+        raise Exception("Error en reconocimiento de array")
+    
+
 #############################################################
 ########### Funciones que editan globalJsonString ###########
 #############################################################
@@ -136,4 +167,10 @@ def quitarEspacios():
     while globalJsonString[0] == " ":
         quitarPrimerCaracter()
 
-
+def matchCaracterOpcional(caracter):
+    global globalJsonString
+    if globalJsonString[0] == caracter:
+        quitarPrimerCaracter()
+        return True
+    else:
+        return False
