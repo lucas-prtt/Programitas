@@ -21,7 +21,14 @@ def parseJson(jsonString):
 def matchObjeto():
     atributos = []
     matchCaracter("{")
-    # match atributos
+
+    # match atributo
+    # while (proximoCaracter(","))
+    # {
+    # match atributo
+    # }
+
+
     matchCaracter("}")
     return nuevoObjeto(atributos)
 
@@ -37,9 +44,11 @@ def matchCaracter(caracter):
         globalJsonString = globalJsonString[1:]
         return
 
-
-
-
-
+def proximoCaracter(caracter):
+    global globalJsonString
+    if (globalJsonString[0] != caracter) :
+        return False
+    else:
+        return True
 
 
