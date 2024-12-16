@@ -32,4 +32,3 @@ def remplazarPrimeraX(matriz):
     matriz[i][j] = "▯"
 
 
-ingresarMatriz()
