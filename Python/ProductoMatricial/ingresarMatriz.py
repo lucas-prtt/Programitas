@@ -20,6 +20,7 @@ def ingresarMatriz():
         
     print("\n\nMatriz final: ")
     imprimirMatriz(tempMatriz)
+    return tempMatriz
 
 def remplazarPrimeraX(matriz):
     i = 0
