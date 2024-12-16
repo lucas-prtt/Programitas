@@ -34,7 +34,6 @@ def anchoNumerosMatriz(matriz):
     longitudesColumnas = []
     for i in range(columnasMatriz(matriz)):
         longitudesColumnas.append(mayorLongitudColumna(matriz, i))
-    print (sum(longitudesColumnas))
     return sum(longitudesColumnas)
 def imprimirFila(matriz, fila):
     print("│ ", end= "")
