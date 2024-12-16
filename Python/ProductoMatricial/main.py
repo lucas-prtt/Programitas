@@ -1,5 +1,6 @@
 from imprimirMatriz import imprimirMatriz, columnasMatriz, filasMatriz
 from ingresarMatriz import ingresarMatriz
+from productoMatricial import productoMatricial
 opcion = "-1"
 
 while opcion != "0":
