@@ -2,6 +2,7 @@ from imprimirMatriz import imprimirMatriz, columnasMatriz, filasMatriz
 from ingresarMatriz import ingresarMatriz
 from productoMatricial import productoMatricial
 from modificarMatriz import modificarMatriz
+from determinante import determinante
 opcion = "-1"
 matriz1 = []
 matriz2 = []
@@ -15,7 +16,7 @@ while opcion != "0":
     print("4. Intercambiar matriz 1 y matriz 2")
     print("5. Modificar un valor de una matriz")
     print("6. Calcular el producto entre la matriz 1 y la matriz 2")
-    
+    print("7. Calcular determinante de matriz 1")
     opcion = input("Ingrese una opcion:")
     match(opcion):
         case "0":
@@ -69,8 +70,15 @@ while opcion != "0":
             else: 
                 print("Error: las columnas de la matriz 2 deben ser iguales a las filas de la matriz 1. ")
             input()
+        case "7":
+            if(matriz1 == []):
+                print("Error: matriz vacia")
+            elif columnasMatriz(matriz1) != filasMatriz(matriz1):
+                print("No es posible calcular determinante de matrices no cuadradas")
+            else: 
+                print("Matriz 1:")
+                imprimirMatriz(matriz1)
+                print("\nDeterminante: {}\n".format(determinante(matriz1)))
 
-#if m1 != n2 :
-#    input("Error: las columnas de la matriz 2 deben ser iguales a las filas de la matriz 1. ")
-#    quit()
 
+            
