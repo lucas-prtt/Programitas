@@ -3,7 +3,12 @@
 <html>
     <body>
         <script src=table.js></script>
-        <script defer> document.body.appendChild(generateEmptyTable(3, 3))</script>
+        <script src="tateti.js"></script>
+        <script defer>
+        const tateti = new TatetiGame
+        document.body.append(generateTable(tateti.asMatrix()))
+        </script>
+
     </body>
 </html>
 

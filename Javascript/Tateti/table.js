@@ -1,3 +1,5 @@
+
+
 function generateTable(matrix){
     columns = columnsAmount(matrix)
     rows = rowsAmount(matrix)
@@ -46,3 +48,6 @@ function columnsAmount(matrix){
     }
     return col
 }
+
+
+
