@@ -9,4 +9,4 @@ y2 = int(input("Input y value of secondo position: "))
 ang2 = int(input("Input second angle measured: "))
 
 result = Tr.triangulate(x1, y1, ang1, x2, y2, ang2)
-print("Objective found at {}".format(result))
+print("Objective found at ({:.1f} ; {:.1f})".format(result[0], result[1]))
