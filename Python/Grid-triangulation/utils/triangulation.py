@@ -8,7 +8,8 @@ import math
 ##
 
 
-
+def triangulateVectors(v1, angle1, v2, angle2):
+    return triangulate(v1[0], v1[1], angle1, v2[0], v2[1], angle2)
 def triangulate(x1, y1, angle1, x2, y2, angle2):
     def isAngleValid(angle):
         return angle <=180 and angle >= -180

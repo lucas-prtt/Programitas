@@ -1,5 +1,4 @@
 from PIL import Image
-import triangulation as Tr
 
 im = Image.new("RGB", (1024, 1024))
 
@@ -9,7 +8,7 @@ def paint(position, color):
     im.putpixel((position[0], im.height-position[1]-1), color)
 def line(slope, offset, color):
     for x in range(0, im.width):
-        pos = (x, Tr.evaluate(x, slope, offset))
+        pos = (x, x * slope + offset)
         if pos[1] <= im.height:
             paint(pos, color)
 def shape(center, radius, color, condition):
