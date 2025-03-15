@@ -6,7 +6,7 @@ im = Image.new("RGB", (1024, 1024))
 def reset(size):
     im = Image.new("RGB", size)
 def paint(position, color):
-    im.putpixel((position[0], im.height-position[1]), color)
+    im.putpixel((position[0], im.height-position[1]-1), color)
 def line(slope, offset, color):
     for x in range(0, im.width):
         pos = (x, Tr.evaluate(x, slope, offset))
@@ -23,17 +23,24 @@ def diamond(center, radius, color):
     shape(center, radius, color, lambda x, y : manhattanDistance(center, (x, y))<radius)
 def circle(center, radius, color):
     shape(center, radius, color, lambda x, y : distance(center, (x, y))<radius)
-    
+def cross(center, color):
+    for x in range(0, im.width):
+        paint((x, center[1]), color)
+    for y in range(0, im.height):
+        paint((center[0], y), color)
+
+
 def manhattanDistance(vector1, vector2):
     return abs(vector1[0] - vector2[0]) + abs(vector1[1] - vector2[1])
 
 def distance(vector1, vector2):
     return ((vector1[0] - vector2[0])**2 + (vector1[1] - vector2[1])**2)**0.5
 
-
+"""
 line(3, 400, (255, 0, 0))
 square((400, 400), 10 , (200, 0, 140))
 diamond((700, 700), 20, (40, 240, 20))
 circle((200, 200), 30, (130, 130, 170))
-
+cross((500, 500), (255, 255, 255))
 im.show()
+"""
