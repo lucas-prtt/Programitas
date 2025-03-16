@@ -2,18 +2,21 @@ from PIL import Image
 
 im = Image.new("RGB", (1024, 1024))
 
+def center():
+    return (im.width/2, im.height/2)
+
 def reset(size):
     im = Image.new("RGB", size)
 def paint(position, color):
-    im.putpixel((position[0], im.height-position[1]-1), color)
+    im.putpixel((round(position[0]), round(im.height-position[1]-1)), color)
 def line(slope, offset, color):
     for x in range(0, im.width):
         pos = (x, x * slope + offset)
         if pos[1] <= im.height:
             paint(pos, color)
 def shape(center, radius, color, condition):
-    for x in range(center[0] - radius, center[0] + radius):
-        for y in range(center[1] - radius, center[1] + radius) :
+    for x in range(round(center[0]) - radius, round(center[0]) + radius):
+        for y in range(round(center[1]) - radius, round(center[1]) + radius) :
             if condition(x, y):
                 paint((x, y), color)
 def square(center, radius, color):
@@ -24,9 +27,11 @@ def circle(center, radius, color):
     shape(center, radius, color, lambda x, y : distance(center, (x, y))<radius)
 def cross(center, color):
     for x in range(0, im.width):
-        paint((x, center[1]), color)
+        for i in range(-1, 1): 
+            paint((x, center[1]+i), color)
     for y in range(0, im.height):
-        paint((center[0], y), color)
+        for i in range(-1, 1):
+            paint((center[0]+i, y), color)
 
 
 def manhattanDistance(vector1, vector2):
@@ -43,3 +48,4 @@ circle((200, 200), 30, (130, 130, 170))
 cross((500, 500), (255, 255, 255))
 im.show()
 """
+def show() : im.show()
