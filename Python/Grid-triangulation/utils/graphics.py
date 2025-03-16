@@ -6,9 +6,12 @@ def center():
     return (im.width/2, im.height/2)
 
 def reset(size):
+    global im 
     im = Image.new("RGB", size)
 def paint(position, color):
-    im.putpixel((round(position[0]), round(im.height-position[1]-1)), color)
+    pos = (round(position[0]), round(im.height-position[1]-1))
+    if 0<pos[0]<im.width and 0<pos[1]<im.height:
+        im.putpixel(pos, color)
 def line(slope, offset, color):
     for x in range(0, im.width):
         pos = (x, x * slope + offset)

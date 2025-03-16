@@ -16,7 +16,12 @@ def drawLine(origin, ang, color):
 
 def v2Sum (v1, v2):
     return(v1[0] + v2[0], v1[1] + v2[1])
-# Por ahora va con el tamaño default de 1024x1024
+
+def vectorSize(vector):
+    return Gr.distance((0, 0), vector)
+
+size = max([vectorSize((x1, y1)), vectorSize((x2, y2)), vectorSize(result)]) + 30
+Gr.reset((round(size+50), round(size+50)))
 
 offset = Gr.center()
 
@@ -26,7 +31,7 @@ def applyOffset(vector):
 drawLine(applyOffset((x2, y2)), ang2, (200, 200, 200))
 drawLine(applyOffset((x1, y1)), ang1, (200, 200, 200))
 Gr.cross(offset, (255, 255, 255))
-Gr.square(applyOffset((x1, y1)), 5, (200, 0, 0))
-Gr.square(applyOffset((x2, y2)), 5, (200, 0, 0))
-Gr.diamond(applyOffset(result), 8, (50, 140, 230))
+Gr.square(applyOffset((x1, y1)), round(size/50)+1, (200, 0, 0))
+Gr.square(applyOffset((x2, y2)), round(size/50)+1, (200, 0, 0))
+Gr.diamond(applyOffset(result), round(size/30)+2, (50, 140, 230))
 Gr.show()
